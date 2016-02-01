@@ -295,8 +295,8 @@
                                             ?>
                                             <th style="width:15%">Date Opération</th>
                                             <!--th style="width:10%">Montant</th-->
-                                            <th style="width:10%">Crédit</th>
-                                            <th style="width:10%">Débit</th>
+                                            <th style="width:10%">Entrée</th>
+                                            <th style="width:10%">Sortie</th>
                                             <th style="width:10%">Destination</th>
                                             <th style="width:45%">Designation</th>
                                         </tr>

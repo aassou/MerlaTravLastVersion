@@ -99,7 +99,7 @@
                             </li>
                             <li>
                                 <i class="icon-truck"></i>
-                                <a>Gestion des livraisons <strong>Société Annahda</strong></a>
+                                <a>Gestion des livraisons</a>
                             </li>
                         </ul>
                         <!-- END PAGE TITLE & BREADCRUMB-->
