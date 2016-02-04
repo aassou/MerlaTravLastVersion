@@ -87,7 +87,7 @@ class CaisseManager{
 
 	public function getCaisses(){
 		$caisses = array();
-		$query = $this->_db->query('SELECT * FROM t_caisse ORDER BY type ASC, dateOperation DESC LIMIT 0, 100');
+		$query = $this->_db->query('SELECT * FROM t_caisse ORDER BY dateOperation DESC LIMIT 0, 100');
 		while($data = $query->fetch(PDO::FETCH_ASSOC)){
 			$caisses[] = new Caisse($data);
 		}
