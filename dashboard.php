@@ -127,7 +127,7 @@
                                 || $_SESSION['userMerlaTrav']->profil() == "manager"
                             ) {
                             ?>
-						    <a href="caisse.php">
+						    <a href="caisse-group.php">
                             <div class="tile bg-purple">
                                 <div class="tile-body">
                                     <i class="icon-money"></i>

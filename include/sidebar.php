@@ -175,14 +175,14 @@
                 <?php 
                     $gestionCaisseClass="";
                     if(
-                    $currentPage=="caisse.php"
-                    or $currentPage=="caisse-iaaza.php"
+                    $currentPage=="caisse-group.php"
+                    or $currentPage=="caisse-mois-annee.php"
                     ){
                         $gestionCaisseClass = "active ";
                     } 
                 ?> 
                 <li class="<?= $gestionCaisseClass; ?> has-sub ">
-                    <a href="caisse.php">
+                    <a href="caisse-group.php">
                     <i class="icon-money"></i> 
                     <span class="title">Gestion de caisse</span>
                     <span class="arrow "></span>
