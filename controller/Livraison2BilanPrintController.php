@@ -22,7 +22,7 @@
             $reglementsFournisseurManager = new ReglementFournisseurManager($pdo);
 			$livraisonNumber = $livraisonManager->getLivraisonNumber();
 			if($livraisonNumber != 0){
-				$titreLivraison ="Bilan des livraisons et réglements - Société Annahda";
+				$titreLivraison ="Bilan des livraisons et réglements";
 				$livraisons = $livraisonManager->getLivraisonsByGroup();
                 $totalReglement = $reglementsFournisseurManager->getTotalReglement();
                 $totalLivraison = $livraisonDetailManager->getTotalLivraison(); 	
@@ -85,10 +85,10 @@ ob_start();
             }
 		?>		
 		<tr>
-			<td><?= $fournisseurManager->getFournisseurById($livraison->idFournisseur())->nom() ?></td>
-			<td><?= number_format($totalDetailsLivraisons, 2, ',', ' '); ?></td>
-            <td><?= number_format($reglementsFournisseurManager->sommeReglementFournisseursByIdFournisseur($livraison->idFournisseur()), 2, ',', ' '); ?></td>
-            <td><?= number_format( $totalDetailsLivraisons-$reglementsFournisseurManager->sommeReglementFournisseursByIdFournisseur($livraison->idFournisseur()), 2, ',', ' '); ?></td>
+			<td style="width: 25%"><?= $fournisseurManager->getFournisseurById($livraison->idFournisseur())->nom() ?></td>
+			<td style="width: 25%"><?= number_format($totalDetailsLivraisons, 2, ',', ' '); ?></td>
+            <td style="width: 25%"><?= number_format($reglementsFournisseurManager->sommeReglementFournisseursByIdFournisseur($livraison->idFournisseur()), 2, ',', ' '); ?></td>
+            <td style="width: 25%"><?= number_format( $totalDetailsLivraisons-$reglementsFournisseurManager->sommeReglementFournisseursByIdFournisseur($livraison->idFournisseur()), 2, ',', ' '); ?></td>
 		</tr>	
 		<?php
 		}//end of loop
