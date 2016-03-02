@@ -155,6 +155,7 @@
                 <div class="row-fluid">
                     <div class="span12">
                     <!-- CONTRAT CAS LIBRE BEGIN -->
+                    <a href="controller/ContratsStatusPrintController.php" class="btn blue get-down pull-right"><i class="icon-print"></i>&nbsp;Imprimer liste des clients en retards</a>
                     <div class="portlet box light-grey" id="reglementsPrevus">
                         <div class="portlet-title">
                             <h4>Situation des réglements des clients</h4>
@@ -170,8 +171,9 @@
                                         <tr>
                                             <th style="width: 20%">Client</th>
                                             <th style="width: 10%">Téléphone</th>
-                                            <th style="width: 20%">Projet</th>
+                                            <th style="width: 10%">Projet</th>
                                             <th style="width: 20%">Bien</th>
+                                            <th style="width: 10%">Montant</th>
                                             <th style="width: 20%">Date Prévu de réglement</th>
                                             <th style="width: 10%">Status</th>
                                         </tr>
@@ -234,6 +236,7 @@
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
+                                            <td><?= number_format($contrat->echeance(), 2, ',', ' ') ?>DH</td>
                                             <td><?= date('d/m/Y', strtotime($element->datePrevu())) ?></td>
                                             <td><?= $link ?></td>
                                         </tr>
@@ -311,6 +314,7 @@
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
+                                            <td><?= number_format($contrat->echeance(), 2, ',', ' ') ?>DH</td>
                                             <td><?= date('d/m/Y', strtotime($element->date())) ?></td>
                                             <td><?= $link ?></td>
                                         </tr>
@@ -358,8 +362,9 @@
                                         <tr>
                                             <th style="width: 20%">Client</th>
                                             <th style="width: 10%">Téléphone</th>
-                                            <th style="width: 20%">Projet</th>
+                                            <th style="width: 10%">Projet</th>
                                             <th style="width: 20%">Bien</th>
+                                            <th style="width: 10%">Montant</th>
                                             <th style="width: 20%">Date Prévu de réglement</th>
                                             <th style="width: 10%">Status</th>
                                         </tr>
@@ -403,6 +408,7 @@
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
+                                            <td><?= number_format($contrat->echeance(), 2, ',', ' ') ?>DH</td>
                                             <td><?= date('d/m/Y', strtotime($element->datePrevu())) ?></td>
                                             <td><?= $link ?></td>
                                         </tr>
@@ -480,6 +486,7 @@
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
+                                            <td><?= number_format($contrat->echeance(), 2, ',', ' ') ?>DH</td>
                                             <td><?= date('d/m/Y', strtotime($element->date())) ?></td>
                                             <td><?= $link ?></td>
                                         </tr>
@@ -527,8 +534,9 @@
                                         <tr>
                                             <th style="width: 20%">Client</th>
                                             <th style="width: 10%">Téléphone</th>
-                                            <th style="width: 20%">Projet</th>
+                                            <th style="width: 10%">Projet</th>
                                             <th style="width: 20%">Bien</th>
+                                            <th style="width: 10%">Montant</th>
                                             <th style="width: 20%">Date Prévu de réglement</th>
                                             <th style="width: 10%">Status</th>
                                         </tr>
@@ -572,6 +580,7 @@
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
+                                            <td><?= number_format($contrat->echeance(), 2, ',', ' ') ?>DH</td>
                                             <td><?= date('d/m/Y', strtotime($element->datePrevu())) ?></td>
                                             <td><?= $link ?></td>
                                         </tr>
@@ -649,6 +658,7 @@
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
+                                            <td><?= number_format($contrat->echeance(), 2, ',', ' ') ?>DH</td>
                                             <td><?= date('d/m/Y', strtotime($element->date())) ?></td>
                                             <td><?= $link ?></td>
                                         </tr>
@@ -696,8 +706,9 @@
                                         <tr>
                                             <th style="width: 20%">Client</th>
                                             <th style="width: 10%">Téléphone</th>
-                                            <th style="width: 20%">Projet</th>
+                                            <th style="width: 10%">Projet</th>
                                             <th style="width: 20%">Bien</th>
+                                            <th style="width: 10%">Montant</th>
                                             <th style="width: 20%">Date Prévu de réglement</th>
                                             <th style="width: 10%">Status</th>
                                         </tr>
@@ -741,6 +752,7 @@
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
+                                            <td><?= number_format($contrat->echeance(), 2, ',', ' ') ?>DH</td>
                                             <td><?= date('d/m/Y', strtotime($element->datePrevu())) ?></td>
                                             <td><?= $link ?></td>
                                         </tr>
@@ -818,6 +830,7 @@
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
+                                            <td><?= number_format($contrat->echeance(), 2, ',', ' ') ?>DH</td>
                                             <td><?= date('d/m/Y', strtotime($element->date())) ?></td>
                                             <td><?= $link ?></td>
                                         </tr>

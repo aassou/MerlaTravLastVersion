@@ -94,6 +94,23 @@ select:focus {
   background-color: transparent;
 }
 
+.btn.cyan
+{
+  color: white;  
+  text-shadow: none;	
+  background-color: #00cca3;
+}
+
+.btn.cyan:hover, 
+.btn.cyan:focus, 
+.btn.cyan:active,
+.btn.cyan.active,
+.btn.cyan[disabled],
+.btn.cyan.disabled {  
+  background-color: #00ffcc !important;
+  color: #fff !important;
+}
+
 .btn.blue   
 {
   color: white;  

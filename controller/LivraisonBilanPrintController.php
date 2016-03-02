@@ -60,20 +60,20 @@ ob_start();
 		text-decoration: underline;
 	}
 	table {
-		    border-collapse: collapse;
-		    width:100%;
-		}
-		
-		table, th, td {
-		    border: 1px solid black;
-		}
-		td, th{
-			padding : 5px;
-		}
-		
-		th{
-			background-color: grey;
-		}
+	    border-collapse: collapse;
+	    width:100%;
+	}
+	
+	table, th, td {
+	    border: 1px solid black;
+	}
+	td, th{
+		padding : 5px;
+	}
+	
+	th{
+		background-color: grey;
+	}
 </style>
 <page backtop="15mm" backbottom="20mm" backleft="10mm" backright="10mm">
     <!--img src="../assets/img/logo_company.png" style="width: 110px" /-->

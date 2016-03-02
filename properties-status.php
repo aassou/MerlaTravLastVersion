@@ -283,7 +283,7 @@
                                                 <?php if($appartement->cave()=="Sans"){ ?><a class="btn mini black">Sans</a><?php } ?>
                                                 <?php if($appartement->cave()=="Avec"){ ?><a class="btn mini blue">Avec</a><?php } ?>
                                             </td>
-                                            <td><a class="btn mini black">Revendre</a>
+                                            <td><a class="btn mini cyan">Revendre</a>
                                             </td>
                                             <td class="hidden-phone">
                                                 <a>
@@ -454,7 +454,7 @@
                                                 <?php if($locau->mezzanine()=="Sans"){ ?><a class="btn mini black"><?= $locau->mezzanine() ?></a><?php } ?>
                                                 <?php if($locau->mezzanine()=="Avec"){ ?><a class="btn mini blue"><?= $locau->mezzanine() ?></a><?php } ?>
                                             </td>
-                                            <td><a class="btn mini black">Revendre</a></td>
+                                            <td><a class="btn mini cyan">Revendre</a></td>
                                             <td>
                                                 <a>
                                                    Pour : <?= $clientManager->getClientById($contrat->idClient())->nom() ?>

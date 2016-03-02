@@ -715,12 +715,6 @@
                     </div>    
                     <?php 
                     } 
-                    //We wanna add "Cas Libre" to this contract if it doesn't contain one
-                    else {
-                    ?>
-                        <a class="btn red get-down" href="#addCasLibre" data-toggle="modal"><i class="icon-plus-sign"></i> Cas Libre</a>
-                    <?php
-                    } 
                     ?>
                     <!-- addCasLibre box begin-->
                     <div id="addCasLibre" class="modal modal-big hide fade in" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="false" >
