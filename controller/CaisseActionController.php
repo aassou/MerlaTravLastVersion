@@ -132,7 +132,7 @@
     //Action Delete Processing End
     $_SESSION['caisse-action-message'] = $actionMessage;
     $_SESSION['caisse-type-message'] = $typeMessage;
-    $redirecktLink = 'Location:../caisse.php';
+    $redirecktLink = 'Location:../caisse-group.php';
     if ( isset ($_POST['source']) and $_POST['source'] == "caisse-group" ) {
         $redirecktLink = "Location:../caisse-group.php";
     }
