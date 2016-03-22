@@ -24,7 +24,7 @@
         $societe = htmlentities($_POST['societe']);
         if ( $societe == 1 ) {
             $caisseManager = new CaisseManager($pdo);
-            $titre = "Société Annahda";
+            $titre = "Société MerlaTrav";
         }
         else if ( $societe == 2 ) {
             $caisseManager = new CaisseIaazaManager($pdo);
@@ -135,8 +135,7 @@ ob_start();
     <br><br>
     <page_footer>
     <hr/>
-    <p style="text-align: center;font-size: 9pt;">STE GROUPE ANNAHDA LIL IAAMAR SARL – Quartier Ouled Brahim N°B-1 en face Lycée Nador Jadid (Anaanaa), Nador. 
-        <br>Tél : 05 36 33 10 31 - Fax : 05 36 33 10 32 </p>
+    <p style="text-align: center;font-size: 9pt;"></p>
     </page_footer>
 </page>    
 <?php

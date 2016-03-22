@@ -27,13 +27,13 @@
             $livraisonManager = new LivraisonManager($pdo);
             $livraisonDetailManager = new LivraisonDetailManager($pdo);
             $reglementsFournisseurManager = new ReglementFournisseurManager($pdo);
-            $titreSociete = "Société Annahda";
+            $titreSociete = "Société MerlaTrav";
         }
         else if ( $societe == 2 ) {
             $livraisonManager = new LivraisonIaazaManager($pdo);
             $livraisonDetailManager = new LivraisonDetailIaazaManager($pdo);
             $reglementsFournisseurManager = new ReglementFournisseurIaazaManager($pdo);
-            $titreSociete = "Société Iaaza";
+            $titreSociete = "Société MerlaTrav";
         }
         //classes and vars
         $idFournisseur = $_POST['idFournisseur'];
