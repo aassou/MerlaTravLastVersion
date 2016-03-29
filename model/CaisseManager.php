@@ -72,6 +72,20 @@ class CaisseManager{
         return $data['total'];
     }
     
+    public function getTotalCaisseByTypeByDestination($type, $destination){
+        $query = $this->_db->prepare(
+        "SELECT SUM(montant) as total FROM t_caisse 
+        WHERE type=:type
+        AND destination=:destination")
+        or die (print_r($this->_db->errorInfo()));
+        $query->bindValue(':type', $type);
+        $query->bindValue(':destination', $destination);
+        $query->execute();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $data['total'];
+    }
+    
     public function getTotalCaisseByTypeByMonthYear($type, $month, $year) {
         $query = $this->_db->prepare(
         "SELECT SUM(montant) as total FROM t_caisse 
@@ -95,6 +109,23 @@ class CaisseManager{
         $query->bindValue(':type', $type);
         $query->bindValue(':dateFrom', $dateFrom);
         $query->bindValue(':dateTo', $dateTo);
+        $query->execute();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $data['total'];
+    }
+    
+    public function getTotalCaisseByTypeByDateByDestination($type, $dateFrom, $dateTo, $destination){
+        $query = $this->_db->prepare(
+        "SELECT SUM(montant) as total FROM t_caisse 
+        WHERE type=:type 
+        AND dateOperation BETWEEN :dateFrom AND :dateTo
+        AND destination=:destination")
+        or die (print_r($this->_db->errorInfo()));
+        $query->bindValue(':type', $type);
+        $query->bindValue(':dateFrom', $dateFrom);
+        $query->bindValue(':dateTo', $dateTo);
+        $query->bindValue(':destination', $destination);
         $query->execute();
         $data = $query->fetch(PDO::FETCH_ASSOC);
         $query->closeCursor();
@@ -138,6 +169,23 @@ class CaisseManager{
         return $caisses;
     }
     
+    public function getCaissesByDatesByDestination($dateFrom, $dateTo, $destination){
+        $caisses = array();
+        $query = $this->_db->prepare(
+        'SELECT * FROM t_caisse 
+        WHERE dateOperation BETWEEN :dateFrom AND :dateTo 
+        AND destination=:destination ORDER BY dateOperation DESC');
+        $query->bindValue(':dateFrom', $dateFrom);
+        $query->bindValue(':dateTo', $dateTo);
+        $query->bindValue(':destination', $destination);
+        $query->execute();
+        while($data = $query->fetch(PDO::FETCH_ASSOC)){
+            $caisses[] = new Caisse($data);
+        }
+        $query->closeCursor();
+        return $caisses;
+    }
+    
     public function getCaissesByDatesByType($dateFrom, $dateTo, $type){
         $caisses = array();
         $query = $this->_db->prepare('SELECT * FROM t_caisse WHERE type=:type
@@ -145,6 +193,24 @@ class CaisseManager{
         $query->bindValue(':dateFrom', $dateFrom);
         $query->bindValue(':dateTo', $dateTo);
         $query->bindValue(':type', $type);
+        $query->execute();
+        while($data = $query->fetch(PDO::FETCH_ASSOC)){
+            $caisses[] = new Caisse($data);
+        }
+        $query->closeCursor();
+        return $caisses;
+    }
+
+    public function getCaissesByDatesByTypeByDestination($dateFrom, $dateTo, $type, $destination){
+        $caisses = array();
+        $query = $this->_db->prepare(
+        'SELECT * FROM t_caisse WHERE type=:type
+        AND dateOperation BETWEEN :dateFrom AND :dateTo 
+        AND destination=:destination ORDER BY dateOperation DESC');
+        $query->bindValue(':dateFrom', $dateFrom);
+        $query->bindValue(':dateTo', $dateTo);
+        $query->bindValue(':type', $type);
+        $query->bindValue(':destination', $destination);
         $query->execute();
         while($data = $query->fetch(PDO::FETCH_ASSOC)){
             $caisses[] = new Caisse($data);
