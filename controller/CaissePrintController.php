@@ -21,6 +21,8 @@
         $caisses = "";
         $titreDocument = "";
         $totalCaisse = 0;
+        $credit = 0;
+        $debit = 0;
         $societe = htmlentities($_POST['societe']);
         if ( $societe == 1 ) {
             $caisseManager = new CaisseManager($pdo);
@@ -40,12 +42,22 @@
             if( $type == "Toutes" ) {
                 $caisses = $caisseManager->getCaissesByDatesByDestination($dateFrom, $dateTo, $destination);
                 $titreDocument = "Liste des opérations pour ".$destination." entre : ".date('d/m/Y', strtotime($dateFrom)).' - '.date('d/m/Y', strtotime($dateTo));
+                $credit = $caisseManager->getTotalCaisseByTypeByDateByDestination('Entree', $dateFrom, $dateTo, $destination);
+                $debit = $caisseManager->getTotalCaisseByTypeByDateByDestination('Sortie', $dateFrom, $dateTo, $destination);
                 $totalCaisse = 
                 $caisseManager->getTotalCaisseByTypeByDateByDestination('Entree', $dateFrom, $dateTo, $destination) - $caisseManager->getTotalCaisseByTypeByDateByDestination('Sortie', $dateFrom, $dateTo, $destination);   
             }
             else {
                 $caisses = $caisseManager->getCaissesByDatesByTypeByDestination($dateFrom, $dateTo, $type, $destination);
                 $titreDocument = "Liste des opérations pour ".$destination." d'".$type." entre : ".date('d/m/Y', strtotime($dateFrom)).' - '.date('d/m/Y', strtotime($dateTo));
+                if ( $type == "Entree" ) {
+                    $credit = $caisseManager->getTotalCaisseByTypeByDateByDestination($type, $dateFrom, $dateTo, $destination);
+                    $debit = 0;
+                }
+                if ( $type == "Sortie" ) {
+                    $credit = 0;
+                    $debit = $caisseManager->getTotalCaisseByTypeByDateByDestination($type, $dateFrom, $dateTo, $destination);
+                } 
                 $totalCaisse = 
                 $caisseManager->getTotalCaisseByTypeByDateByDestination($type, $dateFrom, $dateTo, $destination);
             }
@@ -53,6 +65,8 @@
         else if ( $criteria=="toutesCaisse" ) {
             $caisses = $caisseManager->getCaisses();
             $titreDocument = "Bilan de toutes les opérations de caisse";
+            $credit = $caisseManager->getTotalCaisseByType('Entree');
+            $debit = $caisseManager->getTotalCaisseByType('Sortie');
             $totalCaisse = $caisseManager->getTotalCaisseByType('Entree') - $caisseManager->getTotalCaisseByType('Sortie');   
             /*if ( isset($_POST['type']) ) {
                 $type = htmlentities($_POST['type']);
@@ -93,7 +107,7 @@ ob_start();
     <table>
         <tr>
             <!--th style="width: 20%">Type</th-->
-            <th style="width: 15%">Date opération</th>
+            <th style="width: 15%">Date</th>
             <th style="width: 15%">Crédit</th>
             <th style="width: 15%">Débit</th>
             <th style="width: 30%">Désignation</th>
@@ -127,10 +141,23 @@ ob_start();
     </table>
     <table>
         <tr>
-            <th style="width: 20%">Solde</th>
-            <td style="width: 40%"><strong><?= number_format($totalCaisse, 2, ' ', ',') ?>&nbsp;DH</strong></td>
-            <td style="width: 20%"></td>
-            <td style="width: 20%"></td>
+            <th style="width: 15%">Total Crédit</th>
+            <td style="width: 15%"><?= number_format($credit, 2, ' ', ',') ?></td>
+            <th style="width: 15%"></th>
+            <th style="width: 55%"></th>
+        </tr>
+        <tr>
+            <th style="width: 15%">Total Débit</th>
+            <th style="width: 15%"></th>
+            <td style="width: 15%"><?= number_format($debit, 2, ' ', ',') ?></td>
+            <th style="width: 55%"></th>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <th style="width: 15%">Solde</th>
+            <td style="width: 30%"><strong><?= number_format($totalCaisse, 2, ' ', ',') ?>&nbsp;DH</strong></td>
+            <th style="width: 55%"></th>
         </tr>
     </table>
     <br><br>
