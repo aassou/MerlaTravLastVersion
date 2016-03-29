@@ -47,7 +47,7 @@
                 $caisses = $caisseManager->getCaissesByDatesByTypeByDestination($dateFrom, $dateTo, $type, $destination);
                 $titreDocument = "Liste des opérations pour ".$destination." d'".$type." entre : ".date('d/m/Y', strtotime($dateFrom)).' - '.date('d/m/Y', strtotime($dateTo));
                 $totalCaisse = 
-                $caisseManager->getTotalCaisseByTypeByDestination($type, $dateFrom, $dateTo, $destination);
+                $caisseManager->getTotalCaisseByTypeByDateByDestination($type, $dateFrom, $dateTo, $destination);
             }
         }
         else if ( $criteria=="toutesCaisse" ) {
@@ -93,33 +93,33 @@ ob_start();
     <table>
         <tr>
             <!--th style="width: 20%">Type</th-->
-            <th style="width: 20%">Date opération</th>
-            <th style="width: 20%">Crédit</th>
-            <th style="width: 20%">Débit</th>
-            <th style="width: 20%">Désignation</th>
-            <th style="width: 20%">Destination</th>
+            <th style="width: 15%">Date opération</th>
+            <th style="width: 15%">Crédit</th>
+            <th style="width: 15%">Débit</th>
+            <th style="width: 30%">Désignation</th>
+            <th style="width: 25%">Destination</th>
         </tr>
         <?php
         foreach($caisses as $caisse){
         ?>      
         <tr>
-            <td style="width: 20%"><?= date('d/m/Y', strtotime($caisse->dateOperation())) ?></td>
+            <td style="width: 15%"><?= date('d/m/Y', strtotime($caisse->dateOperation())) ?></td>
             <?php
             if ( $caisse->type() == "Entree" ) {
             ?>
-            <td style="width: 20%"><?= number_format($caisse->montant(), 2, ',', ' ') ?></td>
-            <td style="width: 20%"></td>
+            <td style="width: 15%"><?= number_format($caisse->montant(), 2, ',', ' ') ?></td>
+            <td style="width: 15%"></td>
             <?php  
             }
             else {
             ?>
-            <td style="width: 20%"></td>
-            <td style="width: 20%"><?= number_format($caisse->montant(), 2, ',', ' ') ?></td>
+            <td style="width: 15%"></td>
+            <td style="width: 15%"><?= number_format($caisse->montant(), 2, ',', ' ') ?></td>
             <?php
             }
             ?>
-            <td style="width: 20%"><?= $caisse->designation() ?></td>
-            <td style="width: 20%"><?= $caisse->destination() ?></td>
+            <td style="width: 30%"><?= $caisse->designation() ?></td>
+            <td style="width: 25%"><?= $caisse->destination() ?></td>
         </tr>   
         <?php
         }//end of loop

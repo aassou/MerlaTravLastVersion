@@ -119,8 +119,8 @@ class CaisseManager{
         $query = $this->_db->prepare(
         "SELECT SUM(montant) as total FROM t_caisse 
         WHERE type=:type 
-        AND dateOperation BETWEEN :dateFrom AND :dateTo
-        AND destination=:destination")
+        AND destination=:destination
+        AND dateOperation BETWEEN :dateFrom AND :dateTo")
         or die (print_r($this->_db->errorInfo()));
         $query->bindValue(':type', $type);
         $query->bindValue(':dateFrom', $dateFrom);
@@ -173,8 +173,9 @@ class CaisseManager{
         $caisses = array();
         $query = $this->_db->prepare(
         'SELECT * FROM t_caisse 
-        WHERE dateOperation BETWEEN :dateFrom AND :dateTo 
-        AND destination=:destination ORDER BY dateOperation DESC');
+        WHERE destination=:destination 
+        AND dateOperation BETWEEN :dateFrom AND :dateTo 
+        ORDER BY dateOperation DESC');
         $query->bindValue(':dateFrom', $dateFrom);
         $query->bindValue(':dateTo', $dateTo);
         $query->bindValue(':destination', $destination);
@@ -205,8 +206,9 @@ class CaisseManager{
         $caisses = array();
         $query = $this->_db->prepare(
         'SELECT * FROM t_caisse WHERE type=:type
+        AND destination=:destination
         AND dateOperation BETWEEN :dateFrom AND :dateTo 
-        AND destination=:destination ORDER BY dateOperation DESC');
+        ORDER BY dateOperation DESC');
         $query->bindValue(':dateFrom', $dateFrom);
         $query->bindValue(':dateTo', $dateTo);
         $query->bindValue(':type', $type);
