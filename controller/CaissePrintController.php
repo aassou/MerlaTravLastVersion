@@ -39,13 +39,13 @@
             $destination = htmlentities($_POST['destination']);
             if( $type == "Toutes" ) {
                 $caisses = $caisseManager->getCaissesByDatesByDestination($dateFrom, $dateTo, $destination);
-                $titreDocument = "Liste des opérations entre : ".date('d/m/Y', strtotime($dateFrom)).' - '.date('d/m/Y', strtotime($dateTo));
+                $titreDocument = "Liste des opérations pour ".$destination." entre : ".date('d/m/Y', strtotime($dateFrom)).' - '.date('d/m/Y', strtotime($dateTo));
                 $totalCaisse = 
                 $caisseManager->getTotalCaisseByTypeByDateByDestination('Entree', $dateFrom, $dateTo, $destination) - $caisseManager->getTotalCaisseByTypeByDateByDestination('Sortie', $dateFrom, $dateTo, $destination);   
             }
             else {
                 $caisses = $caisseManager->getCaissesByDatesByTypeByDestination($dateFrom, $dateTo, $type, $destination);
-                $titreDocument = "Liste des opérations d'".$type." entre : ".date('d/m/Y', strtotime($dateFrom)).' - '.date('d/m/Y', strtotime($dateTo));
+                $titreDocument = "Liste des opérations pour ".$destination." d'".$type." entre : ".date('d/m/Y', strtotime($dateFrom)).' - '.date('d/m/Y', strtotime($dateTo));
                 $totalCaisse = 
                 $caisseManager->getTotalCaisseByTypeByDestination($type, $dateFrom, $dateTo, $destination);
             }
@@ -103,23 +103,23 @@ ob_start();
         foreach($caisses as $caisse){
         ?>      
         <tr>
-            <td><?= date('d/m/Y', strtotime($caisse->dateOperation())) ?></td>
+            <td style="width: 20%"><?= date('d/m/Y', strtotime($caisse->dateOperation())) ?></td>
             <?php
             if ( $caisse->type() == "Entree" ) {
             ?>
-            <td><?= number_format($caisse->montant(), 2, ',', ' ') ?></td>
-            <td></td>
+            <td style="width: 20%"><?= number_format($caisse->montant(), 2, ',', ' ') ?></td>
+            <td style="width: 20%"></td>
             <?php  
             }
             else {
             ?>
-            <td></td>
-            <td><?= number_format($caisse->montant(), 2, ',', ' ') ?></td>
+            <td style="width: 20%"></td>
+            <td style="width: 20%"><?= number_format($caisse->montant(), 2, ',', ' ') ?></td>
             <?php
             }
             ?>
-            <td><?= $caisse->designation() ?></td>
-            <td><?= $caisse->destination() ?></td>
+            <td style="width: 20%"><?= $caisse->designation() ?></td>
+            <td style="width: 20%"><?= $caisse->destination() ?></td>
         </tr>   
         <?php
         }//end of loop
