@@ -107,14 +107,14 @@ ob_start();
             <?php
             if ( $caisse->type() == "Entree" ) {
             ?>
-            <td style="width: 15%"><?= number_format($caisse->montant(), 2, ',', ' ') ?></td>
+            <td style="width: 15%"><?= number_format($caisse->montant(), 2, ' ', ',') ?></td>
             <td style="width: 15%"></td>
             <?php  
             }
             else {
             ?>
             <td style="width: 15%"></td>
-            <td style="width: 15%"><?= number_format($caisse->montant(), 2, ',', ' ') ?></td>
+            <td style="width: 15%"><?= number_format($caisse->montant(), 2, ' ', ',') ?></td>
             <?php
             }
             ?>
