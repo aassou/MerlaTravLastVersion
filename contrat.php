@@ -1156,15 +1156,15 @@
 								</tbody>
 							</table>
                             <table class="table table-striped table-bordered  table-hover">
-                            <tbody>
-                                <tr>
-                                    <th style="width: 30%"><strong>Total des réglements</strong></th>
-                                    <th style="width: 25%"><a><strong><?= $operationManager->sommeOperations($contrat->id(), 2, ',', ' ') ?>&nbsp;DH</strong></a></th>
-                                    <th style="width: 20%"><strong>Reste à payé</strong></th>
-                                    <th style="width: 25%"><a><strong><?= number_format($contrat->prixVente()-$operationManager->sommeOperations($contrat->id()), 2, ',', ' ') ?>&nbsp;DH</strong></a></th>
-                                </tr>
-                            </tbody>
-                        </table>
+                                <tbody>
+                                    <tr>
+                                        <th style="width: 30%"><strong>Total des réglements</strong></th>
+                                        <th style="width: 25%"><a><strong><?= $operationManager->sommeOperations($contrat->id(), 2, ',', ' ') ?>&nbsp;DH</strong></a></th>
+                                        <th style="width: 20%"><strong>Reste à payé</strong></th>
+                                        <th style="width: 25%"><a><strong><?= number_format($contrat->prixVente()-$operationManager->sommeOperations($contrat->id()), 2, ',', ' ') ?>&nbsp;DH</strong></a></th>
+                                    </tr>
+                                </tbody>
+                            </table>
 						</div>
 						<br /><br />
 					 </div>
@@ -1367,6 +1367,50 @@
 					</div>
 				</div>
 				<!-- updateContrat box end -->		
+			    <!-- SYNTHESE SITUATION CLIENT BEGIN -->	
+			    <?php
+			    $avance  = $contrat->avance();
+                $montantDoit = $avance + $totalEcheance;
+                $totalReglementsEffectues = $operationManager->sommeOperations($contrat->id());
+                $montantRetard = $montantDoit - $totalReglementsEffectues;                
+			    ?>
+				<div class="portlet box light-grey" id="reglementsPrevus">
+                    <div class="portlet-title">
+                        <h4>Synthèse de la situation du client</h4>
+                        <div class="tools">
+                            <a href="javascript:;" class="reload"></a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="clearfix">
+            				<table class="table table-striped table-bordered  table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th style="width: 30%"><strong>Avance</strong></th>
+                                        <th style="width: 70%"><a><strong><?= number_format($avance, 2, ',', ' ') ?>&nbsp;DH</strong></a></th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30%"><strong>Total Echéances</strong></th>
+                                        <th style="width: 70%"><a><strong><?= number_format($totalEcheance, 2, ',', ' ') ?>&nbsp;DH</strong></a></th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30%"><strong>Montant doit</strong></th>
+                                        <th style="width: 70%"><a><strong><?= number_format($montantDoit, 2, ',', ' ') ?>&nbsp;DH</strong></a></th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30%"><strong>Total réglements effectués</strong></th>
+                                        <th style="width: 70%"><a><strong><?= number_format($totalReglementsEffectues, 2, ',', ' ') ?>&nbsp;DH</strong></a></th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 30%"><strong>Montant reatrd</strong></th>
+                                        <th style="width: 70%"><a><strong><?= number_format($montantRetard, 2, ',', ' ') ?>&nbsp;DH</strong></a></th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- SYNTHESE SITUATION CLIENT END -->    
 				<?php 
 				}
 				else{
