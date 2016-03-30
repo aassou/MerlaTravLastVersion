@@ -79,7 +79,7 @@ ob_start();
 </style>
 <page backtop="15mm" backbottom="20mm" backleft="10mm" backright="10mm">
     <img src="../assets/img/logo-new.jpg" />
-    <br><br><br><br>
+    <br><br>
     <table>
         <tr>
             <td style="width:30%"><strong>Programme </strong></td>
@@ -132,9 +132,9 @@ ob_start();
             <td> : <strong><em><?= $email ?></em></strong></td>
         </tr>
     </table>
-    <br><br><br>
+    <br>
     <p style="font-size: 10.48pt; text-align: justify";><?= $contratTexte ?></p>
-    <br><br>
+    <br>
     <table>
         <tr>
             <td style="width:100%; text-align: center"><?= $contratTexte2 ?></td>
@@ -142,7 +142,7 @@ ob_start();
     </table>
     <br><br>
     <p style="font-size: 10.48pt; text-align: justify"><?= $remarque ?></p>
-    <br><br>
+    <br>
     <table>
         <tr>
             <td style="width:30%; text-align: center">Mode de paiement</td>
