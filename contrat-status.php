@@ -232,7 +232,7 @@
                                             }
                                         ?>
                                         <tr>
-                                            <td><?= $client->nom() ?></td>
+                                            <td><a href="contrat.php?codeContrat=<?= $client->code() ?>"><?= $client->nom() ?></a></td>
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
