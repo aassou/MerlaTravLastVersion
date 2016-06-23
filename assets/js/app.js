@@ -2145,10 +2145,10 @@ var App = function () {
         $('#sample_1').dataTable({
             "aLengthMenu": [
                 [10, 25, 50, -1],
-                [5, 15, 20, "All"]
+                [20, 30, 40, "All"]
             ],
             // set the initial value
-            "iDisplayLength": 5,
+            "iDisplayLength": 20,
             "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
             "sPaginationType": "bootstrap",
             "oLanguage": {
