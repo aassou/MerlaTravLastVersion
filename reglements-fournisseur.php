@@ -110,7 +110,7 @@
                             </li>
                             <li>
                                 <i class="icon-truck"></i>
-                                <a href="livraisons-group.php">Gestion des livraisons <strong>Société Annahda</strong></a>
+                                <a href="livraisons-group.php">Gestion des livraisons <strong>Société MerlaTrav</strong></a>
                                 <i class="icon-angle-right"></i>
                             </li>
                             <li>

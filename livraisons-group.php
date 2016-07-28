@@ -30,7 +30,7 @@
         $titreLivraison ="Liste de toutes les livraisons";
         $hrefLivraisonBilanPrintController = "controller/Livraison2BilanPrintController.php";
         $livraisonListDeleteLink = "";
-        $titreLivraison ="Société Annahda";
+        $titreLivraison ="Société MerlaTrav";
         $livraisonNumber = $livraisonManager->getLivraisonNumber();
         if($livraisonNumber != 0){
             $livraisons = $livraisonManager->getLivraisonsByGroup();
