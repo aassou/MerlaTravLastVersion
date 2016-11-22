@@ -430,4 +430,15 @@ class ContratManager{
         $query->closeCursor();
         return $contrats;
     }
+    
+    public function getContratsDesistes(){
+        $contrats = array();    
+        $query = $this->_db->query("SELECT * FROM t_contrat WHERE status='annulle' ");
+        $query->execute();
+        while($data = $query->fetch(PDO::FETCH_ASSOC)){
+            $contrats[] = new Contrat($data);
+        }
+        $query->closeCursor();
+        return $contrats;
+    }
 }

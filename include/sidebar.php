@@ -42,6 +42,7 @@
 				or $currentPage=="properties-status.php"
 				or $currentPage=="operations-status.php"
 				or $currentPage=="status.php"
+				or $currentPage=="contrats-desistes.php"
 				or $currentPage=="charges-communs-type.php"
 				or $currentPage=="charges-communs-grouped.php"
 				){echo "active ";} ?>">
