@@ -111,6 +111,21 @@ class ReglementPrevuManager{
         return $reglementsPrevus;
     }
     
+    public function getReglementPrevuEnRetardByCodeContrat($codeContrat){
+        $reglementsPrevus = array();
+        $query = $this->_db->prepare(
+        'SELECT * FROM t_reglementprevu 
+        WHERE codeContrat=:codeContrat 
+        LIMIT 0,1');
+        $query->bindValue(':codeContrat', $codeContrat);
+        $query->execute();
+        while($data = $query->fetch(PDO::FETCH_ASSOC)){
+            $reglementsPrevus[] = new ReglementPrevu($data);
+        }
+        $query->closeCursor();
+        return $reglementsPrevus;
+    }
+    
     public function getReglementNumberByCodeContrat($codeContrat){
         $query = $this->_db->prepare(
         'SELECT COUNT(*) AS number FROM t_reglementprevu 
@@ -122,10 +137,18 @@ class ReglementPrevuManager{
         return $data['number'];
     }
     
+    public function getTotalReglementPrevuEnRetard(){
+        $query = $this->_db->query('SELECT SUM(montant) AS total FROM t_reglementprevu 
+        WHERE status=0 AND datePrevu < CURDATE() ORDER BY codeContrat');
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $query->closeCursor();
+        return $data['total'];
+    }
+    
     public function getReglementPrevuEnRetard(){
         $reglementsPrevus = array();
         $query = $this->_db->query('SELECT * FROM t_reglementprevu 
-        WHERE status=0 AND datePrevu < CURDATE() ORDER BY codeContrat');
+        WHERE status=0 AND datePrevu < CURDATE() GROUP BY codeContrat');
         while($data = $query->fetch(PDO::FETCH_ASSOC)){
             $reglementsPrevus[] = new ReglementPrevu($data);
         }

@@ -173,7 +173,7 @@
                                             <th style="width: 10%">Téléphone</th>
                                             <th style="width: 10%">Projet</th>
                                             <th style="width: 20%">Bien</th>
-                                            <th style="width: 10%">Montant</th>
+                                            <!--th style="width: 10%">Montant</th-->
                                             <th style="width: 20%">Date Prévu de réglement</th>
                                             <th style="width: 10%">Status</th>
                                         </tr>
@@ -236,7 +236,7 @@
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
-                                            <td><?= number_format($contrat->echeance(), 2, ',', ' ') ?>DH</td>
+                                            <!--td><?= number_format($contrat->echeance(), 2, ',', ' ') ?>DH</td-->
                                             <td><?= date('d/m/Y', strtotime($element->datePrevu())) ?></td>
                                             <td><?= $link ?></td>
                                         </tr>
@@ -314,7 +314,7 @@
                                             <td><?= $client->telephone1() ?></td>
                                             <td><?= $projet->nom() ?></td>
                                             <td><?= $typeBien.' - '.$niveau.'e: '.$bien->nom() ?></td>
-                                            <td><?= number_format($element->montant(), 2, ',', ' ') ?>DH</td>
+                                            <!--td><?= number_format($element->montant(), 2, ',', ' ') ?>DH</td-->
                                             <td><?= date('d/m/Y', strtotime($element->date())) ?></td>
                                             <td><?= $link ?></td>
                                         </tr>
