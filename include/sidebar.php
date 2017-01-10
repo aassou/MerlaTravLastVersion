@@ -26,6 +26,7 @@
 				</li>
 				<!---------------------------- Dashboard Begin  -------------------------------------------->
 				<li class="start <?php if($currentPage=="dashboard.php" 
+				or $currentPage=="annuaire.php"
 				or $currentPage=="recherches.php"
 				or $currentPage=="compte-bancaire.php"
 				or $currentPage=="conges.php"
