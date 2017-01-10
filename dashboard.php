@@ -227,19 +227,32 @@
                                 </div>
                             </div>
                             </a>
-							<a href="configuration.php">
-							<div class="tile bg-red">
+							<a href="annuaire.php">
+							<div class="tile bg-blue">
 								<div class="corner"></div>
 								<div class="tile-body">
-									<i class="icon-wrench"></i>
+									<i class="icon-phone"></i>
 								</div>
 								<div class="tile-object">
 									<div class="name">
-										Paramétrages
+										Annuaire Téléphonique
 									</div>
 								</div>
 							</div>
 							</a>
+							<a href="configuration.php">
+                            <div class="tile bg-red">
+                                <div class="corner"></div>
+                                <div class="tile-body">
+                                    <i class="icon-wrench"></i>
+                                </div>
+                                <div class="tile-object">
+                                    <div class="name">
+                                        Paramétrages
+                                    </div>
+                                </div>
+                            </div>
+                            </a>
 							<?php
 							}
                             ?>
