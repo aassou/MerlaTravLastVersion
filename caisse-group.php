@@ -14,6 +14,7 @@
     //classes loading end
     session_start();
     date_default_timezone_set('Africa/Casablanca');
+    date_default_timezone_set('Africa/Casablanca');
     if( isset($_SESSION['userMerlaTrav']) ){
         //les sources
         $projetManager = new ProjetManager($pdo);

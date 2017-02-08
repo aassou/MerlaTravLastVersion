@@ -1,5 +1,6 @@
 <?php
     session_start();
+    date_default_timezone_set('Africa/Casablanca');
 	if(isset($_SESSION['userMerlaTrav'])){
 		header('Location:dashboard.php');
 	}

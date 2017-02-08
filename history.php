@@ -13,6 +13,7 @@
     include('lib/pagination.php');
     //classes loading end
     session_start();
+    date_default_timezone_set('Africa/Casablanca');
     if ( isset($_SESSION['userMerlaTrav']) ) {
         $historyManager = new HistoryManager($pdo);
         $histories = $historyManager->getHistorys();

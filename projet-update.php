@@ -12,6 +12,7 @@
     include('config.php');  
     //classes loading end
     session_start();
+    date_default_timezone_set('Africa/Casablanca');
     if(isset($_SESSION['userMerlaTrav']) and $_SESSION['userMerlaTrav']->profil()=="admin"){
     	$idProjet = 0;
 		$nomProjet = "Projet non trouvé";
