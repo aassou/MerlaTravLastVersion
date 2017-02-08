@@ -85,7 +85,7 @@
   <!-- END LOGIN -->
   <!-- BEGIN COPYRIGHT -->
   <div class="copyright">
-    2015 &copy; AnnahdaERP. Management Application.
+    2014-<?= date('Y') ?> &copy; ImmoERP. Management Application.
   </div>
   <!-- END COPYRIGHT -->
   <!-- BEGIN JAVASCRIPTS -->
