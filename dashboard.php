@@ -188,7 +188,7 @@
 										Projets
 									</div>
 									<div class="number">
-										<?= $projetNumber ?>
+										<?php //$projetNumber ?>
 									</div>
 								</div>
 							</div>
@@ -281,7 +281,7 @@
 							</div>
 							<div class="details">
 								<div class="number">
-									<?= $operationsNumberWeek ?>	
+									<?php //$operationsNumberWeek ?>	
 								</div>
 								<div class="desc">									
 									Régl.Cli
@@ -295,7 +295,7 @@
 								<i class="icon-shopping-cart"></i>
 							</div>
 							<div class="details">
-								<div class="number">+<?= $livraisonsNumberWeek ?></div>
+								<div class="number">+<?php //$livraisonsNumberWeek ?></div>
 								<div class="desc">Livraisns</div>
 							</div>					
 						</div>
@@ -306,7 +306,7 @@
 								<i class="icon-group"></i>
 							</div>
 							<div class="details">
-								<div class="number">+<?= $clientNumberWeek ?></div>
+								<div class="number">+<?php //$clientNumberWeek ?></div>
 								<div class="desc">Clients</div>
 							</div>			
 						</div>
@@ -319,7 +319,7 @@
 							</div>
 							<div class="details">
 								<div class="number">
-									<?= number_format($soldeCaisseAnnahda, '2', ',', ' ') ?>
+									<?php //number_format($soldeCaisseAnnahda, '2', ',', ' ') ?>
 								</div>
 								<div class="desc">Caisse</div>
 							</div>					
@@ -348,193 +348,7 @@
 				<!-- END DASHBOARD STATS -->
 				<!-- BEGIN DASHBOARD FEEDS -->
 				<!-- ------------------------------------------------------ -->
-				<?php
-                if ( 
-                    $_SESSION['userMerlaTrav']->profil() == "admin" 
-                    || $_SESSION['userMerlaTrav']->profil() == "consultant"    
-                    || $_SESSION['userMerlaTrav']->profil() == "manager"
-                ) {
-                ?>
-				<div class="row-fluid">
-				<div class="span12">
-					<!-- BEGIN PORTLET-->
-					<div class="portlet paddingless">
-						<div>
-							<h4 class="breadcrumb"><i class="icon-bell"></i>&nbsp;Nouveautés</h4>
-						</div>
-						<div class="portlet-body">
-							<!--BEGIN TABS-->
-							<div class="tabbable tabbable-custom">
-								<ul class="nav nav-tabs">
-									<li class="active"><a href="#tab_1_1" data-toggle="tab">Les livraisons de la semaine</a></li>
-									<li><a href="#tab_1_2" data-toggle="tab">Les clients de la semaine</a></li>
-									<li><a href="#tab_1_3" data-toggle="tab">Notes des clients</a></li>
-									<!--li><a href="#tab_1_4" data-toggle="tab">Les messages d'aujourd'hui</a></li-->
-								</ul>
-								<div class="tab-content">
-									<div class="tab-pane active" id="tab_1_1">
-										<div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible1="1">
-											<ul class="feeds">
-												<?php
-												foreach($livraisonsWeek as $livraison){
-												    $projetName = "Non mentionné";
-												    if ( $livraison->idProjet() != 0 ) {
-												        $projetName = $projetManager->getProjetById($livraison->idProjet())->nom();    
-												    } 
-                                                    else {
-                                                        $projetName = "Non mentionné";
-                                                    }
-												    
-												?>
-												<li>
-													<div class="col1">
-														<div class="cont">
-															<div class="cont-col1">
-																<div class="desc">	
-																	<strong>Fournisseur</strong> : <?= $fournisseursManager->getFournisseurById($livraison->idFournisseur())->nom() ?><br>
-																	<strong>Projet</strong> : <?= $projetName; ?><br>
-																	<a href="livraisons-details.php?codeLivraison=<?= $livraison->code() ?>" target="_blank">
-																		<strong>Livraison</strong> : <?= $livraison->id() ?>
-																	</a>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col2">
-														<div class="date">
-															<?= $livraison->dateLivraison() ?>
-														</div>
-													</div>
-												</li>
-												<hr>
-												<?php 
-												}
-												?>
-											</ul>
-										</div>
-									</div>
-									<div class="tab-pane" id="tab_1_2">
-										<div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible1="1">
-											<ul class="feeds">
-												<?php
-												foreach($clientWeek as $client){
-													$contrats = $contratManager->getContratsByIdClient($client->id());
-												?>
-												<li>
-													<div class="col1">
-														<div class="cont">
-															<div class="cont-col1">
-																<div class="desc">	
-																	<strong>Client</strong> : <?= $client->nom() ?><br>
-																	<?php
-																	foreach($contrats as $contrat){
-																	?>
-																	<a href="contrat.php?codeContrat=<?= $contrat->code() ?>" target="_blank">
-																		<strong>Contrat</strong> : <?= $contrat->id() ?>
-																	</a><br>
-																	<strong>Projet</strong> : <?= $projetName = $projetManager->getProjetById($contrat->idProjet())->nom(); ?>
-																	<br>
-																	<?php
-																	}
-																	?>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col2">
-														<div class="date">
-															<?= date('d/m/Y', strtotime($client->created())) ?>
-														</div>
-													</div>
-												</li>
-												<hr>
-												<?php 
-												}
-												?>
-											</ul>
-										</div>
-									</div>
-									<div class="tab-pane" id="tab_1_3">
-										<div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible1="1">
-											<ul class="feeds">
-												<?php
-												$notesClient = $notesClientsManager->getNotes();
-												foreach($notesClient as $notes){
-													$contrat = $contratManager->getContratByCode($notes->codeContrat());
-													$projetName = $projetManager->getProjetById($notes->idProjet())->nom();
-													$client = $clientManager->getClientById($contrat->idClient());
-													if( str_word_count($notes->note())>0 ){
-												?>
-												<li>
-													<div class="col1">
-														<div class="cont">
-															<div class="cont-col1">
-																<div class="label label-success">								
-																	<i class="icon-bell"></i>
-																</div>
-															</div>
-															<div class="cont-col2">
-																<div class="desc">	
-																	<strong>Note</strong> : <?= $notes->note() ?><br>
-																	<strong>Client</strong> : <?= $client->nom() ?><br>
-																	<a href="contrat.php?codeContrat=<?= $notes->codeContrat() ?>" target="_blank">
-																		<strong>Contrat</strong> : <?= $contrat->id() ?>
-																	</a><br> 
-																	<strong>Projet</strong> : <?= $projetName ?>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col2">
-														<div class="date">
-															<?= $notes->created() ?>
-														</div>
-													</div>
-												</li>
-												<hr>
-												<?php 
-												}//end if
-												}
-												?>
-											</ul>
-										</div>
-									</div>
-									<!--div class="tab-pane" id="tab_1_4">
-										<div class="scroller" data-height="290px" data-always-visible="1" data-rail-visible1="1">
-											<?php
-											//foreach($mailsToday as $mail){
-											?>
-											<div class="row-fluid">
-												<div class="span6 user-info">
-													<img alt="" src="assets/img/avatar.png" />
-													<div class="details">
-														<div>
-															<a href="#"><?php //echo $mail->sender() ?></a> 
-														</div>
-														<div>
-															<strong>Message : </strong><?php //echo $mail->content() ?><br>
-															<strong>Envoyé Aujourd'hui à : </strong><?php //echo date('h:i', strtotime($mail->created())) ?>
-														</div>
-													</div>
-												</div>
-											</div>
-											<hr>
-											<?php
-											//}
-											?>
-										</div>
-									</div-->
-								</div>
-							</div>
-							<!--END TABS-->
-						</div>
-					</div>
-					<!-- END PORTLET-->
-				</div>
-				</div>
-				<?php
-                }
-                ?>
+				
 				<!-- ------------------------------------------------------ -->
 				<!-- END DASHBOARD FEEDS -->
 				<!-- END PAGE HEADER-->
